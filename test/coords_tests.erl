@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Copyright 2016 Pentland Edge Ltd.
+%% Copyright 2018 Pentland Edge Ltd.
 %%
 %% Licensed under the Apache License, Version 2.0 (the "License"); you may not
 %% use this file except in compliance with the License. 
@@ -20,9 +20,8 @@
 
 %% Define a test generator function to run all the tests. 
 coord_test_() ->
-    [lla_to_ecef_checks(), ecef_distance_checks(), haversine_checks(), 
-     initial_bearing_checks(), destination_checks(),
-     ecef_to_enu_checks(), calc_angle_checks()].
+    [lla_to_ecef_checks(), ecef_distance_checks(), ecef_to_enu_checks(), 
+     calc_angle_checks()].
 
 lla_to_ecef_checks() ->
     % Start with a point on the equator.
@@ -54,31 +53,6 @@ lla_to_ecef_checks() ->
 ecef_distance_checks() ->
     Dist = coords:ecef_distance({45,-20,88}, {-13,44,200}),
     [?_assert(almost_equal(141.435498, Dist, 0.0001))].
-
-haversine_checks() ->
-    Pt1 = {55.9987, -2.71},
-    Pt2 = {56.001, -2.734},
-    Dist = haversine:distance(Pt1, Pt2),
-
-    [?_assert(almost_equal(1514, Dist, 1))].
-
-initial_bearing_checks() ->
-    Pt1 = {55.9987, -2.71},
-    Pt2 = {56.001, -2.734},
-    Bearing = haversine:initial_bearing(Pt1, Pt2),
-
-    [?_assert(almost_equal(279.735, Bearing, 0.001))].
-
-destination_checks() ->
-    Pt1 = {55.9987, -2.71},
-    Bearing = 279.735,
-    Distance = 1514,
-
-    Destination = haversine:destination(Pt1, Bearing, Distance),
-    {Lat, Lon} = Destination,
-
-    [?_assert(almost_equal(56.001, Lat, 0.001)),
-     ?_assert(almost_equal(-2.734, Lon, 0.001))].
 
 ecef_to_enu_checks() ->
     % Take a couple of points that are close together on the surface of the
