@@ -5,7 +5,7 @@ There are currently utilities for converting between coordinates specified as La
 
 There are also functions for performing Haversine (great circle) calculations such as computing the final destination given a starting point and an initial bearing.
 
-# Building
+## Building
 Compile the code and run the unit tests using rebar:
 ```
 rebar compile eunit
