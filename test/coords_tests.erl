@@ -58,14 +58,14 @@ ecef_distance_checks() ->
 haversine_checks() ->
     Pt1 = {55.9987, -2.71},
     Pt2 = {56.001, -2.734},
-    Dist = coords:haversine_distance(Pt1, Pt2),
+    Dist = haversine:distance(Pt1, Pt2),
 
     [?_assert(almost_equal(1514, Dist, 1))].
 
 initial_bearing_checks() ->
     Pt1 = {55.9987, -2.71},
     Pt2 = {56.001, -2.734},
-    Bearing = coords:initial_bearing(Pt1, Pt2),
+    Bearing = haversine:initial_bearing(Pt1, Pt2),
 
     [?_assert(almost_equal(279.735, Bearing, 0.001))].
 
@@ -74,7 +74,7 @@ destination_checks() ->
     Bearing = 279.735,
     Distance = 1514,
 
-    Destination = coords:destination(Pt1, Bearing, Distance),
+    Destination = haversine:destination(Pt1, Bearing, Distance),
     {Lat, Lon} = Destination,
 
     [?_assert(almost_equal(56.001, Lat, 0.001)),
