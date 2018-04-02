@@ -1,0 +1,14 @@
+{application, geolib,
+ [
+  {description, "An Erlang geolib library"},
+  {vsn, "1"},
+  {modules, [
+             geolib
+            ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {env, []}
+ ]}.
