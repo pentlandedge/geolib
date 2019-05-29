@@ -5,9 +5,21 @@ There are currently utilities for converting between coordinates specified as La
 
 There are also functions for performing Haversine (great circle) calculations such as computing the final destination given a starting point and an initial bearing.
 
+## Prerequisites
+It is necessary to have Erlang installed, and the compiler erlc available on the path. The rebar3 tool is used to control the build process, so it is necessary to have this installed and on the path too. 
+
+If using the (optional) Makefile, then the make utility must be available.
+
 ## Building
-Compile the code and run the unit tests using rebar:
+
+The simplest way to build the software, run the unit tests, perform static analysis and generate the module documentation in one step is to use make:
 ```
-rebar compile eunit
+# make
+```
+The makefile has rules for each of these steps which can be run separately if preferred. It uses rebar3 to do the real work.
+
+Alternatively, the software can be compiled (on a Linux platform) directly using rebar3:
+```
+# rebar3 compile
 ```
 
